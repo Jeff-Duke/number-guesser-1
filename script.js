@@ -11,17 +11,17 @@ var randomNumber = Math.round((Math.random() * (maxInput.value - minInput.value)
 var setButton = document.querySelector('#set-button');
 var instructionsBox = document.querySelector('#instructions');
 var currentLevel = document.querySelector('#current-level');
-currentLevel.value = 1;
 
 var pageReset = function() { document.location.reload(true);}
+
 function setInstructions (){
   instructionsBox.innerText = ('Guess a number between ' + minInput.value + ' and ' + maxInput.value + ' or, enter a new range below.');
 }
 function setCurrentLevel (){
-//currentLevel.value = 1;
-currentLevel.innerText = ("Current Level is " + currentLevel.value);
+currentLevel.innerText = ("Current Level is: " + currentLevel.value);
 }
 
+currentLevel.value = 1;
 clearButton.disabled = true;
 resetButton.disabled = true;
 setInstructions();
