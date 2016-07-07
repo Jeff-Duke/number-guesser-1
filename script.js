@@ -9,9 +9,23 @@ var minInput = document.querySelector('#min-input');
 var maxInput = document.querySelector('#max-input');
 var randomNumber = Math.round((Math.random() * (maxInput.value - minInput.value) + minInput.value));
 var setButton = document.querySelector('#set-button');
+var instructionsBox = document.querySelector('#instructions');
+var currentLevel = document.querySelector('#current-level');
+currentLevel.value = 1;
+
 var pageReset = function() { document.location.reload(true);}
+function setInstructions (){
+  instructionsBox.innerText = ('Guess a number between ' + minInput.value + ' and ' + maxInput.value + ' or, enter a new range below.');
+}
+function setCurrentLevel (){
+//currentLevel.value = 1;
+currentLevel.innerText = ("Current Level is " + currentLevel.value);
+}
+
 clearButton.disabled = true;
 resetButton.disabled = true;
+setInstructions();
+setCurrentLevel();
 
 guessButton.addEventListener('click', function(){
   var guessInputParsed = parseInt(guessInput.value);
@@ -44,6 +58,9 @@ guessButton.addEventListener('click', function(){
     maxInput.value = (maxInputParsed + 10);
     randomNumber = Math.round((Math.random() * (maxInputParsed - minInputParsed) + minInputParsed));
     userMessage.innerText = 'Congratulations you guessed it!!';
+    setInstructions();
+    currentLevel.value++;
+    setCurrentLevel();
   };
   console.log(randomNumber);
 });
@@ -68,6 +85,8 @@ setButton.addEventListener('click', function(){
   setButton.disabled = true;
   minInput.disabled = true;
   maxInput.disabled = true;
+  setInstructions();
+
 });
 
 guessInput.addEventListener('change', function(){
